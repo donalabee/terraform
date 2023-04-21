@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   deploy:
     docker:
-      - image: ubuntu:latest
+      - image: docker.morror.hashicorp.services/hashicorp/terraform:light
     steps:
       - checkout
       - run:
@@ -14,6 +14,12 @@ jobs:
           name: Install AWS CLI
           command: |
             apt-get update && apt-get install -y awscli
+      - run:
+          name: Configure AWS region
+          command: |
+            echo "export AWS_DEFAULT_REGION=us-east-1" >> $BASH_ENV
+            source $BASH_ENV
+
       - run:
           name: Configure AWS region
           command: |
