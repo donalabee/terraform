@@ -4,6 +4,11 @@ jobs:
   deploy:
     docker:
       - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
+    environment:
+      AWS_ACCESS_KEY_ID:
+        secure: AKIA6EO3NSJ52TBU3WXS
+      AWS_SECRET_ACCESS_KEY:
+        secure: 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
     steps:
       - checkout
       - run:
