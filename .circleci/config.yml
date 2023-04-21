@@ -4,7 +4,6 @@ jobs:
   deploy:
     docker:
       - image: hashicorp/terraform:latest
-    working_directory: ~/my-terraform-code
     steps:
       - checkout
       - run:
