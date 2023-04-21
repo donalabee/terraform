@@ -7,8 +7,11 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Set Terraform Cloud token
+          command: echo "export TF_API_TOKEN=$TF_API_TOKEN" >> $BASH_ENV
+      - run:
           name: Terraform init
-          command: terraform login && terraform init
+          command: terraform init -backend-config="token=$TF_API_TOKEN"
       - run:
           name: Terraform validate
           command: terraform validate
