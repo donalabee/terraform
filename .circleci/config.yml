@@ -1,0 +1,43 @@
+version: 2.1
+
+jobs:
+  deploy:
+    docker:
+      - image: hashicorp/terraform:latest
+    working_directory: ~/my-terraform-code
+    steps:
+      - checkout
+      - run:
+          name: Install AWS CLI
+          command: |
+            sudo apt-get update && sudo apt-get install -y awscli
+      - run:
+          name: Configure AWS credentials
+          command: |
+            aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+            aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+            aws configure set default.region $AWS_DEFAULT_REGION
+      - run:
+          name: Terraform init
+          command: terraform init
+      - run:
+          name: Terraform validate
+          command: terraform validate
+      - run:
+          name: Terraform plan
+          command: terraform plan
+      - run:
+          name: Terraform apply
+          command: terraform apply -auto-approve
+
+workflows:
+  deploy:
+    jobs:
+      - deploy:
+          filters:
+            branches:
+              only: main
+      - deploy:
+          filters:
+            branches:
+              only: /^pull\/.*$/
