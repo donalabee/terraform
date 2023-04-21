@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   deploy:
     docker:
-      - image: hashicorp/terraform:latest
+      - image: ubuntu:latest
     steps:
       - checkout
       - run:
