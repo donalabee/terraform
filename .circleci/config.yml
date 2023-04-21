@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   deploy:
     docker:
-      - image: ubuntu:latest
+      - image: docker.morror.hashicorp.services/hashicorp/terraform:light
     steps:
       - checkout
       - run:
