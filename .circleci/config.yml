@@ -3,22 +3,9 @@ version: 2.1
 jobs:
   deploy:
     docker:
-      - image: ubuntu:latest
+      - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
     steps:
       - checkout
-      - run:
-          name: Install AWS CLI
-          command: |
-            sudo apt-get update && sudo apt-get install -y awscli
-      - run:
-          name: Configure AWS region
-          command: |
-            aws configure set default.region us-east-1
-      - run:
-          name: Configure AWS credentials
-          command: |
-            aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
-            aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
       - run:
           name: Terraform init
           command: terraform init
