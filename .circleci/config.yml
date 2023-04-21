@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run:
           name: Terraform init
-          command: terraform init
+          command: terraform login && terraform init
       - run:
           name: Terraform validate
           command: terraform validate
