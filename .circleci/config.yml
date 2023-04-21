@@ -7,9 +7,19 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install sudo
+          command: apt-get update && apt-get install -y sudo
+
+      - run:
           name: Install AWS CLI
           command: |
-            sudo apt-get update && sudo apt-get install -y awscli
+            apt-get update && apt-get install -y awscli
+      - run:
+          name: Configure AWS region
+          command: |
+            echo "export AWS_DEFAULT_REGION=us-east-1" >> $BASH_ENV
+            source $BASH_ENV
+
       - run:
           name: Configure AWS region
           command: |
