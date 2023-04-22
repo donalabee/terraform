@@ -4,13 +4,11 @@ jobs:
   deploy:
     docker:
       - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
-        environment:
-         TF_API_TOKEN: $TF_API_TOKEN
     steps:
       - checkout
       - run:
-          name: Set Terraform Cloud token
-          command: echo "export TF_API_TOKEN=$TF_API_TOKEN" >> $BASH_ENV
+          name: create token locally
+          command: echo "credentials "\app.terraform.io\" {token = \"TERRAFORM_TOKEN\"}" > $HOME/.terraformrc
       - run:
           command: terraform init -input=false
       - run:
