@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: docker.mirror.hashicorp.services/hashicorp/terraform:light
         environment:
-         TF_API_TOKEN: $TF_API_TOKEN
+         TF_API_TOKEN: yfTDT2zyIasWeQ.atlasv1.z1wV8zfBtHh5EPDD6WicxnU0aVrWQ5UGgk0X6ONGFUbNtyTLpIBQ2y4SWTy1Rd9fDno
     steps:
       - checkout
       - run:
