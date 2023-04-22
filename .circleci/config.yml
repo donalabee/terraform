@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run:
           name: create token locally
-          command: echo "credentials "\app.terraform.io\" {token = \"TERRAFORM_TOKEN\"}" > $HOME/.terraformrc
+          command: echo "credentials \"app.terraform.io\" {token = \"TERRAFORM_TOKEN\"}" > $HOME/.terraformrc
       - run:
           name: Terraform Init
           command: terraform init -input=false
